@@ -26,8 +26,23 @@ router.get("/", async (req, res) => {
 
 // get one product
 router.get("/:id", async (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
+  try {
+    const { id } = req.params;
+    const product = await Category.findByPk(id, {
+      include: [{ model: Category }, { model: Tag }],
+    });
+    if (product) {
+      return res.json(product);
+    }
+    return res.status(404).json({
+      error: "Product not found",
+    });
+  } catch (error) {
+    console.log(`[ERROR]: Failed to get category | ${error.message}`);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
+  }
 });
 
 // create new product
@@ -104,8 +119,23 @@ router.put("/:id", async (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
-  // delete one product by its `id` value
-});
+// delete one product by its `id` value
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const product = await Product.findByPk(id);
 
+    await Product.destroy({ where: { id } });
+
+    if (product) {
+      return res.status(200).json({ message: "Product deleted" });
+    }
+    return res.status(404).json({
+      error: "Product not deleted",
+    });
+  } catch (error) {
+    console.error(`ERROR | ${error.message}`);
+    return res.status(500).json(error);
+  }
+});
 module.exports = router;
