@@ -1,11 +1,11 @@
 const router = require("express").Router();
-const { async } = require("seed/lib/seed");
+//const { async } = require("seed/lib/seed");
 const { Product, Category, Tag, ProductTag } = require("../../models");
 
 // The `/api/products` endpoint
+
 // get all products
 router.get("/", async (req, res) => {
-  // find all products
   try {
     const products = await Product.findAll({
       include: [{ model: Category }, { model: Tag }],
@@ -13,7 +13,7 @@ router.get("/", async (req, res) => {
     if (products) {
       return res.json(products);
     }
-    return res.status(404).json({
+    return res.status(400).json({
       error: "Products not found",
     });
   } catch (error) {
@@ -28,17 +28,17 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await Category.findByPk(id, {
+    const product = await Product.findByPk(id, {
       include: [{ model: Category }, { model: Tag }],
     });
     if (product) {
       return res.json(product);
     }
-    return res.status(404).json({
+    return res.status(400).json({
       error: "Product not found",
     });
   } catch (error) {
-    console.log(`[ERROR]: Failed to get category | ${error.message}`);
+    console.log(`[ERROR]: Failed to get product | ${error.message}`);
     return res.status(500).json({
       message: "Internal server error",
     });

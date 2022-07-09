@@ -51,7 +51,6 @@ router.post("/", async (req, res) => {
   try {
     const { category_name } = req.body;
 
-    // insert category in the DB
     const newCategory = await Category.create({ category_name });
     return res.json(newCategory);
   } catch (error) {
@@ -86,7 +85,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await Product.findByPk(id);
+    const category = await Category.findByPk(id);
     await Category.destroy({ where: { id } });
 
     if (category) {
