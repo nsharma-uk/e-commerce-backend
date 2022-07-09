@@ -79,8 +79,9 @@ router.put("/:id", async (req, res) => {
       error: "Category not updated",
     });
   } catch (error) {
-    console.error(`ERROR | ${error.message}`);
-    return res.status(500).json(error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
   }
 });
 
@@ -99,7 +100,9 @@ router.delete("/:id", async (req, res) => {
     });
   } catch (error) {
     console.error(`ERROR | ${error.message}`);
-    return res.status(500).json(error);
+    return res.status(500).json({
+      message: "Internal server error",
+    });
   }
 });
 

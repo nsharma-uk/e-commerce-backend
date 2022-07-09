@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
     if (categories) {
       return res.json(categories);
     }
-    return res.status(404).json({
+    return res.status(400).json({
       error: "Categories not found",
     });
   } catch (error) {
@@ -35,7 +35,7 @@ router.get("/:id", async (req, res) => {
     if (category) {
       return res.json(category);
     }
-    return res.status(404).json({
+    return res.status(400).json({
       error: "Category not found",
     });
   } catch (error) {
@@ -72,7 +72,7 @@ router.put("/:id", async (req, res) => {
     if (updateCategory) {
       return res.status(200).json({ message: "Category updated" });
     }
-    return res.status(404).json({
+    return res.status(400).json({
       error: "Category not updated",
     });
   } catch (error) {
@@ -91,7 +91,7 @@ router.delete("/:id", async (req, res) => {
     if (category) {
       return res.status(200).json({ message: "Category deleted" });
     }
-    return res.status(404).json({
+    return res.status(400).json({
       error: "Category not deleted",
     });
   } catch (error) {
