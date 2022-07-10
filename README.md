@@ -10,6 +10,7 @@ This project builds the back end for an e-commerce site and configures a working
 
 - [Project Description](#projectdescription)
 - [Database Models](#database-models)
+- [Associations](#associations)
 - [Technologies](#technologies)
 - [Installation](#installation)
 - [License](#license)
@@ -144,6 +145,14 @@ The database contains the following four models, including the requirements list
 
     - References the `Tag` model's `id`.
 
+### Associations
+
+Association methods were executed on the Sequelize models to create the following relationships between them:
+
+- `Product` belongs to `Category`, and `Category` has many `Product` models, as a category can have multiple products but a product can only belong to one category.
+
+- `Product` belongs to many `Tag` models, and `Tag` belongs to many `Product` models. Allow products to have multiple tags and tags to have many products by using the `ProductTag` through model.
+
 ## Technologies
 
 The following technologies and packages were used in this project:
@@ -154,7 +163,8 @@ The following technologies and packages were used in this project:
   - MySQL2
   - Sequelize
   - dotenv
-- Postman for API requests
+
+Postman for API requests and My SQL Workbench was used
 
 ## Installation
 
