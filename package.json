@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "enquirer": "^2.3.6",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "node": "^18.4.0",
+    "nodemon": "^2.0.19",
+    "seed": "^0.4.4",
+    "sequelize": "^6.21.2"
+  },
+  "name": "e-commerce-backend",
+  "description": "This project builds the back end for an e-commerce site and configures a working Express.js API to use Sequelize to interact with a MySQL database.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "seed": "node src/seeds/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nsharma-uk/e-commerce-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nsharma-uk/e-commerce-backend/issues"
+  },
+  "homepage": "https://github.com/nsharma-uk/e-commerce-backend#readme"
+}
